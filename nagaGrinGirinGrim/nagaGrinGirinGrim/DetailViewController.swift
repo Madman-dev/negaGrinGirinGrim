@@ -237,12 +237,12 @@ class DetailViewController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case .left:
-                print("왼쪽으로 이동")
+                print("오른쪽으로 이동")
                 imageIndex = (imageIndex + 1) % postImgNames.count
                 postedImage.image = UIImage(named: postImgNames[imageIndex])
 
             case .right:
-                print("오른쪽으로 이동")
+                print("왼쪽으로 이동")
                 imageIndex = (imageIndex - 1 + postImgNames.count) % postImgNames.count
                 postedImage.image = UIImage(named: postImgNames[imageIndex])
 
