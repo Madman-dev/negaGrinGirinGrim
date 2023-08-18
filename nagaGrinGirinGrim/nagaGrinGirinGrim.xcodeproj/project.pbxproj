@@ -16,6 +16,8 @@
 		63A531C92A89E4D2001DFF71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A531C72A89E4D2001DFF71 /* LaunchScreen.storyboard */; };
 		96E73D542A8CB64200901756 /* WritingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96E73D522A8CB64200901756 /* WritingStoryboard.storyboard */; };
 		96E73D552A8CB64200901756 /* WritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E73D532A8CB64200901756 /* WritingViewController.swift */; };
+		BDD62E242A8EFC1F0029FB6A /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD62E232A8EFC1F0029FB6A /* Reaction.swift */; };
+		BDD62E262A8F10280029FB6A /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDD62E252A8F10280029FB6A /* ModalViewController.swift */; };
 		C069E5A42A8C6B47001C11A8 /* MyDiaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069E5A32A8C6B47001C11A8 /* MyDiaryTableViewCell.swift */; };
 		C069E5D92A8CE42E001C11A8 /* CollectionViewTry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C069E5D82A8CE42E001C11A8 /* CollectionViewTry.swift */; };
 		C069E5DB2A8CE455001C11A8 /* CollectionViewTry.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C069E5DA2A8CE455001C11A8 /* CollectionViewTry.storyboard */; };
@@ -46,6 +48,8 @@
 		63A531CA2A89E4D2001DFF71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96E73D522A8CB64200901756 /* WritingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WritingStoryboard.storyboard; sourceTree = "<group>"; };
 		96E73D532A8CB64200901756 /* WritingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WritingViewController.swift; sourceTree = "<group>"; };
+		BDD62E232A8EFC1F0029FB6A /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
+		BDD62E252A8F10280029FB6A /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		C069E5A32A8C6B47001C11A8 /* MyDiaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryTableViewCell.swift; sourceTree = "<group>"; };
 		C069E5D82A8CE42E001C11A8 /* CollectionViewTry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewTry.swift; sourceTree = "<group>"; };
 		C069E5DA2A8CE455001C11A8 /* CollectionViewTry.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CollectionViewTry.storyboard; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				63A531C72A89E4D2001DFF71 /* LaunchScreen.storyboard */,
 				63A531CA2A89E4D2001DFF71 /* Info.plist */,
 				DC7881992A8A062600FAFBD8 /* DetailViewController.swift */,
+				BDD62E252A8F10280029FB6A /* ModalViewController.swift */,
+				BDD62E232A8EFC1F0029FB6A /* Reaction.swift */,
 				DC78819B2A8A064100FAFBD8 /* MainPageViewController.swift */,
 				DC78819D2A8A069400FAFBD8 /* ProfileViewController.swift */,
 				1F954FE62A8C7783004A1360 /* CellCustom.swift */,
@@ -204,6 +210,7 @@
 				1F954FE72A8C7783004A1360 /* CellCustom.swift in Sources */,
 				DC7881A02A8A06AA00FAFBD8 /* EditProfileViewController.swift in Sources */,
 				63A531C12A89E4D1001DFF71 /* ViewController.swift in Sources */,
+				BDD62E242A8EFC1F0029FB6A /* Reaction.swift in Sources */,
 				C069E5E52A8CE4FE001C11A8 /* Edit+Layout.swift in Sources */,
 				C069E5A42A8C6B47001C11A8 /* MyDiaryTableViewCell.swift in Sources */,
 				C069E5D92A8CE42E001C11A8 /* CollectionViewTry.swift in Sources */,
@@ -216,6 +223,7 @@
 				C069E5E72A8CE50B001C11A8 /* DomoCell.swift in Sources */,
 				DC78819E2A8A069400FAFBD8 /* ProfileViewController.swift in Sources */,
 				63A531BF2A89E4D1001DFF71 /* SceneDelegate.swift in Sources */,
+				BDD62E262A8F10280029FB6A /* ModalViewController.swift in Sources */,
 				C069E5E32A8CE4A4001C11A8 /* NavigationTapbar_top.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

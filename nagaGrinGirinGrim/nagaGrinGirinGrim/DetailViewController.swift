@@ -14,8 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var pageControl: UIPageControl!
     
     @IBOutlet weak var detailTitleLabel: UILabel!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var reactionButton: UIButton!
     
     @IBOutlet weak var detailDateLabel: UILabel!
     @IBOutlet weak var detailBodyLabel: UILabel!
@@ -24,6 +23,12 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var secondEmoji: UIButton!
     @IBOutlet weak var thirdEmoji: UIButton!
     @IBOutlet weak var fourthEmoji: UIButton!
+    
+    var reactionCollection: [String: Int] = [:]
+    var firstReactionCount = 0
+    var secondReactionCount = 0
+    var thirdReactionCount = 0
+    var fourthReactionCount = 0
     
     var postTitles = [
         "식목일",
@@ -85,7 +90,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupView()
         postedImage.isUserInteractionEnabled = true
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipe))
@@ -95,6 +99,12 @@ class DetailViewController: UIViewController {
         swipeRight.direction = .right
         postedImage.addGestureRecognizer(swipeRight)
         
+        
+        reactionButton.backgroundColor = .red
+//        reactionButton.setTitle("", for: .normal)
+        reactionButton.titleLabel?.text = "테스트"
+        
+        detailBodyLabel.backgroundColor = .blue
     }
     
     func setupView() {
@@ -109,7 +119,7 @@ class DetailViewController: UIViewController {
         setupNavigationBarItem()
         setupReactionButtons()
         populateData()
-        setupButtons()
+        setupView()
     }
     
     func populateData() {
@@ -147,10 +157,10 @@ class DetailViewController: UIViewController {
         fourthEmoji.backgroundColor = .green
     }
     
-    func setupButtons() {
-        editButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        editButton.setTitle("", for: .normal)
-    }
+//    func setupButtons() {
+//        editButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
+//        editButton.setTitle("", for: .normal)
+//    }
     
     @IBAction func pageChanged(_ sender: UIPageControl) {
         postedImage.image = UIImage(named: postImgNames[sender.currentPage])
@@ -171,28 +181,57 @@ class DetailViewController: UIViewController {
         present(shareSheetVC, animated: true)
     }
     
-    @IBAction func firstEmojiButtonTapped(_ sender: UIButton) {
-        print("첫번쨰 버튼이 눌렸습니다.")
+    @IBAction func EmojiButtonTapped(_ sender: UIButton) {
+        
+        switch sender {
+        case firstEmoji: print("첫번째 버튼이 눌렸습니다.")
+            let reaction = "🫠"
+            reactionButton.titleLabel?.text = reaction
+            firstReactionCount += 1
+            reactionCollection.updateValue(firstReactionCount, forKey: reaction)
+            print(reactionCollection)
+        case secondEmoji: print("두번째 버튼이 눌렸습니다.")
+            let reaction = "🔥"
+            reactionButton.titleLabel?.text = reaction
+            secondReactionCount += 1
+            reactionCollection.updateValue(secondReactionCount, forKey: reaction)
+            print(reactionCollection)
+        case thirdEmoji: print("세번째 버튼이 눌렸습니다.")
+            let reaction = "❤️"
+            reactionButton.titleLabel?.text = reaction
+            thirdReactionCount += 1
+            reactionCollection.updateValue(thirdReactionCount, forKey: reaction)
+            print(reactionCollection)
+        case fourthEmoji: print("네번째 버튼이 눌렸습니다.")
+            let reaction = "⭐️"
+            reactionButton.titleLabel?.text = reaction
+            fourthReactionCount += 1
+            reactionCollection.updateValue(fourthReactionCount, forKey: reaction)
+            print(reactionCollection)
+        //에러 처리 필요
+        default: print("에러가 발생했습니다.")
+        }
     }
     
-    @IBAction func secondEmojiButtonTapped(_ sender: UIButton) {
-        print("두번쨰 버튼이 눌렸습니다.")
+    @IBAction func reactionButtonClicked(_ sender: UIButton) {
+        let modalViewController = ModalViewController()
+        modalViewController.view.backgroundColor = .yellow
+        modalViewController.modalPresentationStyle = .pageSheet
+        
+        if let sheet = modalViewController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.delegate = self
+            sheet.prefersGrabberVisible = true
+        }
+        
+        present(modalViewController, animated: true)
     }
     
     
-    @IBAction func thirdEmojiButtonTapped(_ sender: UIButton) {
-        print("세번쨰 버튼이 눌렸습니다.")
-    }
+//    @objc func editButtonTapped() {
+//        print("수정 버튼이 눌렸습니다.")
+//    }
     
-    @IBAction func fourthEmojiButtonTapped(_ sender: UIButton) {
-        print("네번쨰 버튼이 눌렸습니다.")
-    }
-    
-    @objc func editButtonTapped() {
-        print("수정 버튼이 눌렸습니다.")
-    }
-    
-    // 너무 긴데... 이건 수정해보자
     @objc func respondToSwipe(_ gesture: UIGestureRecognizer) {
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
@@ -214,4 +253,8 @@ class DetailViewController: UIViewController {
             pageControl.currentPage = imageIndex
         }
     }
+}
+
+extension DetailViewController: UISheetPresentationControllerDelegate {
+    
 }
