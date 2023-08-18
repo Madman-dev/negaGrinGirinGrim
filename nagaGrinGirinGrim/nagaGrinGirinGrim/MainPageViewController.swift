@@ -53,7 +53,12 @@ class MainPageViewController: UIViewController {
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     
+<<<<<<< HEAD
 
+=======
+  
+    
+>>>>>>> 29c1511c06d129a1ce7cb57b47f9fd677034e84d
     
     override func viewDidLoad() {
         super.viewDidLoad()
