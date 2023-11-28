@@ -1,9 +1,16 @@
+![header](https://capsule-render.vercel.app/api?type=waving&color=ff6d1c&height=300&section=header&text=🎨내가그린기린그림%20&fontSize=90&fontColor=ffffff)
+
 # negaGrinGirinGrim
 내일배움캠프 6주차 iOS 입문 팀과제 : SNS협업툴
 
 # 🖼️🦒🎨 내가 그린 기린 그림 🎨🦒🖼️
 #### 기간 : 2023/08/14 ~ 2023/08/20 (7일)
-박철우, 이동준, 김도연, 남보경, 김귀아
+
+# 어플 소개
+누구나 쉽게 사용할 수 있는 SNS 어플을 만들어본다면 어떻게 될까? 라는 생각으로 시작된 프로젝트<br/>
+어린이부터 어른까지 모두가 시각적으로 쉽게 사용할 수 있는 이미지 기반 SNS<br/>
+어린 아이들도 사용할 수 있는만큰 댓글 기능은 막아둔 채 Emoji만으로 반응을 남길 수 있는 구조
+
 ### ⚡️에너자이(2)조⚡️ 팀 구성원
 <table>
   <tbody>
@@ -81,11 +88,6 @@
   </tbody>
 </table>
 
-### 개요
-어린이부터 어른들까지 누구나 시각적으로 쉽게 사용가능한 이미지 기반 SNS
-### 레퍼런스
-Instagram
-
 
 ### 개발환경
 ### 주요 개발 기능
@@ -101,5 +103,50 @@ Instagram
 - 글쓰기 페이지 : 김도연
 - 마이페이지(프로필) : 남보경
 - 프로필편집 페이지 : 김귀아
-### Trouble shooting
 
+### Trouble shooting
+- **이미지 로드 이후 검수하는 단계에서 indexPath 에러 발생**<br/>
+  Asset으로 보유하고 있던 이미지 파일 갯수를 넘거나 일정 단계를 넘으면 indexPath 오류가 발생하며 중단 되는 상황 확인<br/>
+  → 데이터의 최소 단위만 검수하면서 데이터 Range를 명확하게 명시하지 않아 발생하는 이슈.
+  ```swift
+  if let selectedIndexPath = defaults.value(forKey: "current") as? Int {
+            if selectedIndexPath >= 0 && selectedIndexPath < userData.postImgNames.count {
+                let postImageName = userData.postImgNames[selectedIndexPath]
+                let postTitle = userData.postTitles[selectedIndexPath]
+                let postDate = userData.postDates[selectedIndexPath]
+                let postContent = userData.postContents[selectedIndexPath]
+                
+                postedImage.image = UIImage(named: postImageName)
+                detailBodyLabel.text = postContent
+                detailDateLabel.text = postDate
+                detailTitleLabel.text = postTitle
+                pageControl.numberOfPages = postImageName.count
+                pageControl.hidesForSinglePage = true
+            } else {
+                // 에러 처리 안되는 중...
+                let errorHandler = ErrorHandler()
+                errorHandler.displayError(for: .needtoReload)
+            }
+  }
+  ```
+- **이미지 Swipe 기능 추가**<br/>
+  pageControl을 사용할 경우, 사용자가 직접 pageControl을 탭하지 않으면 다음 이미지를 확인하지 못하는 문제 확인<br/>
+  → 좌우 UISwipeGestureRecognizer를 적용하여 이미지를 넘겨 볼 수 있도록 정리<br/>
+  → 사용자가 화면에서 마주하는 이미지, 그림 영역을 맡은 postedImage UIComponent에도 사용자 인터렉션이 적용 될 수 있도록 코드 추가
+  ```swift
+  func enableSwipe() {
+        postedImage.isUserInteractionEnabled = true
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipe))
+        swipeLeft.direction = .left
+        postedImage.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipe))
+        swipeRight.direction = .right
+        postedImage.addGestureRecognizer(swipeRight)
+    }
+  ```
+  
+- **PageControl이 이미지와 연결되지 않는 문제**<br/>
+  정상 작동하다가 Swipe 기능을 적용하면서 page control이 움직이지 않는 문제점 발견<br/>
+  → 프로젝트 기간 이슈로 인해 중단
